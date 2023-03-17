@@ -14,7 +14,7 @@ import Greet from './src/components/WelcomeScreen/Greet';
 import Tabs from './src/components/Tabs/Tabs';
 import Header from './src/components/Header/Header';
 import {customTheme} from './src/Utils/Color/colorTheme';
-import Product from "./src/components/Product/Product";
+import Product from './src/components/Product/Product';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,10 +44,9 @@ function App(): JSX.Element {
           <Stack.Screen
             name="Product"
             component={Product}
-            options={{
-              headerShown: false,
-              headerTitle: (props: any) => <Header {...props} />,
-            }}
+            options={({route}) => ({
+              title: route.params.title,
+            })}
           />
         </Stack.Navigator>
       </NativeBaseProvider>

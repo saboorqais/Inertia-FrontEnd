@@ -1,19 +1,22 @@
 import * as React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {extendTheme, Spacer, Image, Pressable} from 'native-base';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 type Props = {
   title: string;
 };
 
-export default function Category({path, title}: Props) {
+export default function Category({path, title, categoryId}: Props) {
   console.log(path);
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Product');
+          navigation.navigate('Product', {
+            categoryId: categoryId,
+            title: title,
+          });
         }}>
         <View style={styles.Imagewrapper}>
           <View>
