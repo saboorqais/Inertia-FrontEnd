@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   Center,
+  Container,
   extendTheme,
   Flex,
   Heading,
@@ -12,10 +13,11 @@ import {
   Text,
   View,
 } from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Badge} from 'native-base';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import image from '../../../assets/images/sofa.png';
+import {data} from '../MockData/data';
 
 export default function Product({route}: any) {
   console.log(route.params.categoryId);
@@ -66,36 +68,57 @@ export default function Product({route}: any) {
           <Text style={styles.Heading}>Available Items</Text>
         </View>
         <Flex direction="column">
-          <View style={styles.Imagewrapper}>
-            <View style={styles.ImageContainer}>
-              <View style={styles.ImageDiv}>
-                <Image
-                  source={image}
-                  alt="Alternate Text"
-                  size="md"
-                  backgroundColor={'white'}
-                  borderRadius={8}
-                />
-              </View>
-              <Flex direction={'column'} style={styles.InformationContainer}>
-                <Heading w={'full'} size={'sm'}>
-                  Basic Sofa
-                </Heading>
-                <Text>Comfortable 1-seater sofa</Text>
-                <Flex direction={'row'} justifyContent={'space-between'} width={'full'}>
-                  <View style={styles.bottomContainer} >
-                    <Badge rounded={'full'} height={5} colorScheme="error" />
-                    <Badge rounded={'full'} height={5} colorScheme="green" />
-                    <Badge rounded={'full'} height={5} colorScheme="yellow" />
-                  </View>
-                  <View>
-                    <Text>PKR 23,000</Text>
-                  </View>
+          {/* eslint-disable-next-line react/jsx-no-undef */}
+          {data.map(item =>
+            item.category.categoryId === route.params.categoryId ? (
+              <TouchableOpacity key={item.id}>
+                <View style={styles.Imagewrapper}>
+                  <View style={styles.ImageContainer}>
+                    <View style={styles.ImageDiv}>
+                      <Image
+                        source={item.imageUrl}
+                        alt="Alternate Text"
+                        size="md"
+                        backgroundColor={'white'}
+                        borderRadius={8}
+                      />
+                    </View>
+                    <Flex
+                      direction={'column'}
+                      style={styles.InformationContainer}>
+                      <Heading w={'full'} size={'sm'}>
+                        {item.title}
+                      </Heading>
+                      <Text>{item.description}</Text>
 
-                </Flex>
-              </Flex>
-            </View>
-          </View>
+                      <Container>
+                        <View style={styles.bottomContainer}>
+                          <Badge
+                            rounded={'full'}
+                            height={5}
+                            colorScheme="error"
+                          />
+                          <Badge
+                            rounded={'full'}
+                            height={5}
+                            colorScheme="green"
+                          />
+                          <Badge
+                            rounded={'full'}
+                            height={5}
+                            colorScheme="yellow"
+                          />
+                        </View>
+                        <View>
+                          <Text>{item.price}</Text>
+                        </View>
+                      </Container>
+                    </Flex>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            ) : null,
+          )}
         </Flex>
       </NativeBaseProvider>
     </View>

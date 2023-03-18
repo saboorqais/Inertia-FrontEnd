@@ -10,28 +10,28 @@ export default function Categories({}: Props) {
     {
       title: 'Sofa',
       url: require('../../../assets/images/sofa2.png'),
-      categoryId:1
+      categoryId: 1,
     },
     {
       title: 'Sofa',
       url: require('../../../assets/images/sofa.png'),
-      categoryId:1
+      categoryId: 1,
     },
     {
       title: 'Table',
       url: require('../../../assets/images/table.png'),
-      categoryId:2
+      categoryId: 2,
     },
     {
       title: 'Cabinet',
       url: require('../../../assets/images/cabinet.png'),
-      categoryId:3
+      categoryId: 3,
     },
     ,
     {
       title: 'Chair',
       url: require('../../../assets/images/chair.png'),
-      categoryId:4
+      categoryId: 4,
     },
   ];
   const theme = extendTheme({
@@ -63,7 +63,12 @@ export default function Categories({}: Props) {
         <NativeBaseProvider theme={theme}>
           <Flex direction="row" flexWrap={'wrap'}>
             {data.map((item, index) => (
-              <Category key={index} path={item.url} title={item.title} categoryId={item.categoryId} />
+              <Category
+                key={index}
+                path={item.url}
+                title={item.title}
+                categoryId={item.categoryId}
+              />
             ))}
           </Flex>
         </NativeBaseProvider>
