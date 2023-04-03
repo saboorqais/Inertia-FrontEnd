@@ -19,7 +19,7 @@ import Icons from 'react-native-vector-icons/FontAwesome';
 import image from '../../../assets/images/sofa.png';
 import {data} from '../MockData/data';
 
-export default function Product({route}: any) {
+export default function Product({route,navigation}: any) {
   console.log(route.params.categoryId);
   const theme = extendTheme({
     components: {
@@ -71,7 +71,13 @@ export default function Product({route}: any) {
           {/* eslint-disable-next-line react/jsx-no-undef */}
           {data.map(item =>
             item.category.categoryId === route.params.categoryId ? (
-              <TouchableOpacity key={item.id}>
+              <TouchableOpacity key={item.id}
+              onPress={() => {
+                navigation.navigate('ProductPage', {
+                
+                });
+              }}
+              >
                 <View style={styles.Imagewrapper}>
                   <View style={styles.ImageContainer}>
                     <View style={styles.ImageDiv}>
