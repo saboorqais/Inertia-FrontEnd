@@ -9,6 +9,12 @@ export const customTheme = extendTheme({
               borderRadius: 10,
               color: 'white',
             },
+            interia_outline: {
+              backgroundColor: 'black',
+              border:"5px solid #546CFF",
+              borderRadius: 10,
+              color: 'white',
+            },
           },
         },
       },

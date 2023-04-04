@@ -16,11 +16,19 @@ import Header from './src/components/Header/Header';
 import {customTheme} from './src/Utils/Color/colorTheme';
 import Product from './src/components/Product/Product';
 import ProductPage from './src/components/ProductPage/ProductPage';
+import { Provider } from 'react-redux';
+import store from './src/redux/configureStore';
+import Cart from './src/components/Cart/Cart';
 
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   return (
+    <Provider
+    store={store}
+    >
+
+  
     <NavigationContainer>
       <NativeBaseProvider theme={customTheme}>
         <Stack.Navigator initialRouteName="Home">
@@ -45,20 +53,28 @@ function App(): JSX.Element {
           <Stack.Screen
             name="Product"
             component={Product}
-            options={({route}) => ({
+            options={({route}:any) => ({
               title: route.params.title,
             })}
           />
           <Stack.Screen
             name="ProductPage"
             component={ProductPage}
-            options={({route}) => ({
+            options={({route}:any) => ({
+              title: route.params.title,
+            })}
+          />
+          <Stack.Screen
+            name="Cart"
+            component={Cart}
+            options={({route}:any) => ({
               title: route.params.title,
             })}
           />
         </Stack.Navigator>
       </NativeBaseProvider>
     </NavigationContainer>
+    </Provider>
   );
 }
 

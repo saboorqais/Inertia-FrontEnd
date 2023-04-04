@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {NativeBaseProvider, extendTheme, Flex, Pressable} from 'native-base';
+import { StyleSheet, Text, View } from 'react-native';
+import { NativeBaseProvider, extendTheme, Flex, Pressable } from 'native-base';
 import Category from './Category/Category';
 
 type Props = {};
 
-export default function Categories({}: Props) {
+export default function Categories({ }: Props) {
   const data = [
     {
       title: 'Sofa',
@@ -61,7 +61,7 @@ export default function Categories({}: Props) {
           <Text style={styles.Heading}>Categories</Text>
         </View>
         <NativeBaseProvider theme={theme}>
-          <Flex direction="row" flexWrap={'wrap'}>
+          <Flex direction="row" flexWrap={'wrap'} w={"full"}>
             {data.map((item, index) => (
               <Category
                 key={index}
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'white',
+    padding:16
   },
   text: {
     fontFamily: 'Poppins',
@@ -92,14 +93,16 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     margin: 7,
-    marginLeft: 15,
+
   },
   SearchbarContainer: {
     height: 40,
   },
   ImageContainer: {
-    margin: 16,
-    flex: 1,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center"
+    , alignItems: "center"
   },
   Heading: {
     fontStyle: 'normal',

@@ -1,8 +1,10 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { Center, Container, Heading, Image, VStack, Text, HStack, Badge, Button } from 'native-base';
+import { Center, Container, Heading, Image, VStack, Text, HStack, Badge, Button, useToast, Box } from 'native-base';
 import image from '../../../assets/images/sofa.png'
-const ProductPage = () => {
+const ProductPage = ({ navigation }) => {
+    const toast = useToast();
+
     return (
         <VStack flex={1} bg="white" space={4} alignItems="center" w={"full"} >
             <Container w="full" h="200"
@@ -12,7 +14,6 @@ const ProductPage = () => {
                 alignItems="center"
                 justifyContent={"center"}
             >
-
                 <Image
                     source={image}
                     alt="Alternate Text"
@@ -72,12 +73,29 @@ const ProductPage = () => {
 
             </Container>
             <View style={styles.LiveContainer}>
-                <Button _text={{ color: 'white' }} mt={4} variant="interia">
-                    Add to Cart
-                </Button>
-                <Button _text={{ color: 'white' }} mt={4} variant="interia">
-                    Open AR Designer
-                </Button>
+                <TouchableOpacity onPress={() => {
+                    toast.show({
+                        avoidKeyboard:true,
+                        duration:2000,
+                        render: () => {
+                            return <Box bg="emerald.500" px="2" py="1" rounded="sm" mb={5}>
+                                Item Added to Cart
+                            </Box>;
+                        }
+                    });
+
+                }}>
+                    <Button _text={{ color: 'white' }} mt={4} variant="interia">
+                        Add to Cart
+                    </Button>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Button _text={{ color: 'white' }} mt={4} variant="interia">
+                        Open AR Designer
+                    </Button>
+
+                </TouchableOpacity>
+
             </View>
 
 
