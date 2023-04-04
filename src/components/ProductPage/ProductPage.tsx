@@ -75,8 +75,8 @@ const ProductPage = ({ navigation }) => {
             <View style={styles.LiveContainer}>
                 <TouchableOpacity onPress={() => {
                     toast.show({
-                        avoidKeyboard:true,
-                        duration:2000,
+                        avoidKeyboard: true,
+                        duration: 2000,
                         render: () => {
                             return <Box bg="emerald.500" px="2" py="1" rounded="sm" mb={5}>
                                 Item Added to Cart
